@@ -3,6 +3,8 @@ import ClassBaseComponent from "./components/ClassBaseComponent"
 import Object_In_Component from "./components/Object_In_Component"
 import Student from "./components/Student"
 import Login_Signup from "./components/Login_Signup"
+import Message from "./components/Message"
+import CounterClock from "./components/CounterClock"
 function App() {
 
   return (
@@ -17,6 +19,10 @@ function App() {
       <Student name="Ali"/> */}
     
       {/* <Login_Signup  /> */}
+      {/* <Message messg="Greetings" /> */}
+
+      <CounterClock />
+
     </>
   )
 }
