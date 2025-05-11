@@ -5,6 +5,8 @@ import Student from "./components/Student"
 import Login_Signup from "./components/Login_Signup"
 import Message from "./components/Message"
 import CounterClock from "./components/CounterClock"
+import ReduxComponent from "./components/ReduxComponent"
+
 function App() {
 
   return (
@@ -21,8 +23,9 @@ function App() {
       {/* <Login_Signup  /> */}
       {/* <Message messg="Greetings" /> */}
 
-      <CounterClock />
+      {/* <CounterClock /> */}
 
+      <ReduxComponent />
     </>
   )
 }
