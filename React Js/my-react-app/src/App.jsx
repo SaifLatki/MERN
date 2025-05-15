@@ -6,6 +6,7 @@ import Login_Signup from "./components/Login_Signup"
 import Message from "./components/Message"
 import CounterClock from "./components/CounterClock"
 import ReduxComponent from "./components/ReduxComponent"
+import SimpleForm from "./Formik/SimpleForm"
 
 function App() {
 
@@ -25,7 +26,10 @@ function App() {
 
       {/* <CounterClock /> */}
 
-      <ReduxComponent />
+      {/* <ReduxComponent /> */}
+
+      <SimpleForm />
+
     </>
   )
 }
