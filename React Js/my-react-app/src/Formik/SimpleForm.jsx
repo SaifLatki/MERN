@@ -1,28 +1,50 @@
 import {useFormik} from 'formik';
 
-
 const initialValues = {
             name:'',
+            age:0,
             email:'',
-            channel:''
+            // channel:''
         }
-const onSubmit = values => {
-  console.log(values);
-  alert('Form submitted successfully');
-        }
+const onSubmit = async values => {
+  try {
+    const response = await fetch('http://localhost:3001/api/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(values)
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      alert('Form submitted successfully!');
+      console.log('Server response:', data);
+    } else {
+      alert('Failed to submit form');
+    }
+  } catch (error) {
+    console.error('Error:', error);
+    alert('Something went wrong!');
+  }
+};
+
 const validate = values => {
     const errors = {};
     if (!values.name) {
         errors.name = 'Required';
+    }
+    if(!values.age){
+      errors.age = 'Required'
     }
     if (!values.email) {
         errors.email = 'Required';
     } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
         errors.email = 'Invalid email address';
     }
-    if (!values.channel) {
-        errors.channel = 'Required';
-    }
+    // if (!values.channel) {
+    //     errors.channel = 'Required';
+    // }
     return errors;
 }
 
@@ -34,6 +56,11 @@ function SimpleForm() {
     });
 
   console.log('Touched fields:', formik.touched);
+
+  function PutData(){
+
+
+  }
   return (
     <div className="min-h-screen bg-gradient-to-r from-blue-100 to-purple-100 flex items-center justify-center p-4">
       <div className="bg-white shadow-xl rounded-2xl p-8 w-full max-w-md">
@@ -68,17 +95,17 @@ function SimpleForm() {
           </div>
 
           <div>
-            <label htmlFor="channel" className="block text-sm font-medium text-gray-700 mb-1">Channel</label>
+            <label htmlFor="age" className="block text-sm font-medium text-gray-700 mb-1">Age</label>
             <input
-              type="text"
-              id="channel"
-              name="channel"
+              type="number"
+              id="age"
+              name="age"
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
-              value={formik.values.channel}
+              value={formik.values.age}
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
-            {formik.touched.channel && formik.errors.channel ? <div className="text-red-500 text-sm mt-1">{formik.errors.channel}</div> : null}
+            {formik.touched.age && formik.errors.age ? <div className="text-red-500 text-sm mt-1">{formik.errors.age}</div> : null}
           </div>
 
           <button
